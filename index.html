@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://res.cloudinary.com/dcmnwc3ux/image/upload/v1493918347/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7_2017-05-05_%E4%B8%8A%E5%8D%881.09.00_fnw5k9.png">
+
+    <title>Chat Room | COMP 4021</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="https://v4-alpha.getbootstrap.com/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
+    <style type="text/css">
+    	#chats {
+    		border: 1px solid gray;
+    		height: 300px;
+    		width: 100%;
+    		overflow: scroll;
+    		padding: 10px;
+    		margin: 5px;
+    	}
+    	#chat_box {
+    		border-collapse: separate;
+    	}
+    	#chat_box .chat{
+    		/*border: 1px solid gray;*/
+    		margin: 5px;
+    		width: 100%;
+    		height: 10px;
+    		padding: 5px;
+    	}
+    	#chat_box .chat .name {
+    		width: 100px;
+    	}
+    	#chat_box .chat .msg a{
+            text-decoration: underline;
+    	}
+        #color_box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid gray;
+        }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Begin page content -->
+    <div class="container">
+    	<div class="mt-1">
+		    <h1>Chat Room DEMO</h1>
+		    <h4>COMP 4021 HW3</h4>
+		    <br>
+		</div>
+
+	    <div id="login_part">
+		    <h5>Login</h5>
+		    <hr>
+		    <form enctype="multipart/form-data" action="" id="login_form">
+		    	<div class="form-group ">
+		    		<div class="form-group row">
+		    		  <label class="col-sm-4 col-form-label">UserName:</label>
+		    		  <div class="col-sm-8">
+		    		    <input type="text" class="form-control" name="username" id="uname" placeholder="Enter UserName">
+		    		  </div>
+		    		</div>
+		    		<div class="form-group row">
+		    		  <label for="inputPassword" class="col-sm-4 col-form-label">Icon: </label>
+		    		  <div class="col-sm-8">
+		    		  	<div class="row" style="margin-left: 0;margin-right: 0;">
+		    		  		<div class="col-xs-8">
+		    		  			<input type="file" class="form-control-file" id="icon_img" name="icon_file" >
+		    		  		</div>
+		    		  		<div class="col-xs-4">
+		    		  			<div class="btn btn-primary " onclick="login()">GO</div>
+		    		  		</div>
+		    		  	</div>
+		    		  </div>
+		    		</div>
+		    	</div>
+		    </form>
+	    </div>
+
+	    <div id="chat_room">
+	    	<h5>Chat Room <button type="button" class="btn btn-danger float-xs-right" onclick="logout();">Logout</button></h5>
+
+		    <hr>
+		    <div id="chats">
+		    	<table id="chat_box">
+		    	</table>
+		    </div>
+		    <div class="form-group row">
+				<div class="col-sm-10">
+					<div class="input-group input-group-lg">
+					  <span class="input-group-addon" id="uname_label" >@</span>
+					  <input type="text" class="form-control" id="send_msg_string" placeholder="Enter Message" onfocus="this.value=''" >
+					</div>
+				</div>
+				<div class="col-sm-2" >
+					<button type="submit" class="btn btn-primary" style="width: 95%;margin: 0 10px;" onclick="send_msg();">send</button>
+				</div>
+				
+		    </div>
+
+            <table>
+                <tr>
+                    <td > Choose A Color: </td>
+                    <td id="color_box" onclick="setColor('000000')" style="background-color:#000000;"></td>
+                    <td id="color_box" onclick="setColor('fefbd8')" style="background-color:#fefbd8;"></td>
+                    <td id="color_box" onclick="setColor('f18973')" style="background-color:#f18973;"></td>
+                    <td id="color_box" onclick="setColor('9ACD32')" style="background-color:#9ACD32;"></td>
+                    <td id="color_box" onclick="setColor('6A5ACD')" style="background-color:#6A5ACD;"></td>
+                    <td id="color_box" onclick="setColor('DB7093')" style="background-color:#DB7093;"></td>
+                    <td id="color_box" onclick="setColor('000080')" style="background-color:#000080;"></td>
+                    <td id="color_box" onclick="setColor('C71585')" style="background-color:#C71585;"></td>
+                    <td id="color_box" onclick="setColor('800000')" style="background-color:#800000;"></td>
+                    <td id="color_box" onclick="setColor('778899')" style="background-color:#778899;"></td>
+                    <td id="color_box" onclick="setColor('FFB6C1')" style="background-color:#FFB6C1;"></td>
+                    <td id="color_box" onclick="setColor('FF69B4')" style="background-color:#FF69B4;"></td>
+                    <td id="color_box" onclick="setColor('FF8C00')" style="background-color:#FF8C00;"></td>
+                </tr>
+            </table>
+
+
+
+
+		    <br>
+		    <button type="submit" class="btn btn-primary" style="width: 95%;margin: 0 10px;" onclick="show_online_user ()">Show Current User</button>
+	    </div>
+	    
+
+    </div>
+    	<br>
+    <footer class="footer" >
+      <div class="container">
+        <span class="text-muted">Power By: LOTUS FA, 20356560</span>
+      </div>
+    </footer>
+
+    <div id="demo"></div>
+    <script type="text/javascript">
+    	
+    	let login_path = "./login.php";
+    	let update_path = "./update.php";
+    	let send_msg_path = "./send_msg.php";
+
+    	let chats_arr = [];
+    	let uname = "";
+
+        let msg_color = "000000";
+    	let status = 0;
+    	let update_duration = 1000;
+
+    	main();
+
+    	function main () {
+    		update ();
+    		setInterval(function(){
+    			update ();
+    		}, update_duration);
+    	}
+
+    	function update () {
+    		update_status ();
+    		if (status == 1 ) update_chats ();
+    	}
+
+    	function update_status () {
+    		if (status == 0) {
+				document.getElementById("login_part").style.display = "block";
+				document.getElementById("chat_room").style.display = "none";
+    			
+    		}else if (status == 1) {
+    			document.getElementById("uname_label").innerHTML = uname+":";
+    			document.getElementById("login_part").style.display = "none";
+    			document.getElementById("chat_room").style.display = "block";
+    		}
+    	}
+
+    	function update_chats () {
+    		var xmlhttp = new XMLHttpRequest();
+    		xmlhttp.onreadystatechange = function() {
+    		    if (this.readyState == 4 && this.status == 200) {
+    		        let data = JSON.parse(this.responseText);
+    		        let chats = data.chats;
+
+    		        if (chats_arr.length != chats.length) {
+    		        	chats_arr = [];
+    		        	chats_arr = chats;
+    		        	update_chat_box (chats);
+    		        }
+    		    }
+    		};
+
+    		let url = update_path;
+    		let params = "username=" + uname;
+    		xmlhttp.open("GET", url + "?" + params , true);
+    		xmlhttp.send();
+    	}
+
+    	function update_chat_box (chats) {
+    		var chat_box = document.getElementById("chat_box");
+    		while (chat_box.firstChild) {
+    		    chat_box.removeChild(chat_box.firstChild);
+    		}
+    		for (var i = 0; i < chats.length ; i++) {
+    		  let chatNode = document.createElement("tr");
+    		  chatNode.className += " chat";
+    		  let nameNode = document.createElement("td");
+    		  nameNode.className += " name";
+    		  let msgNode = document.createElement("td");
+    		  msgNode.className += " msg";
+    		  let br = document.createElement("br");
+
+              chatNode.style.color = "#"+chats[i].color;
+    		  nameNode.innerHTML = chats[i].name+":";
+
+
+    		  msgNode.innerHTML = addHref2str(chats[i].msg);
+    		  
+    		  chatNode.appendChild(nameNode);
+    		  chatNode.appendChild(msgNode);
+    		  chatNode.appendChild(br);
+
+    		  document.getElementById("chat_box").appendChild(chatNode);
+    		}
+    		scroll_bottom ();
+    	}
+
+        function addHref2str (str) {
+            str += " ";
+            var y = str.indexOf("http://");
+            let x = str.indexOf(" ", y);
+            let z = str.slice(y,x);
+            var res = str.replace( z , "<a href=\""+ z + "\" target=\"_blank\" >" + z + "</a>");
+            return res;
+        }
+
+    	function scroll_bottom () {
+    		var element = document.getElementById("chats");
+    		element.scrollTop = element.scrollHeight;
+    	}
+
+    	function login () {
+    		let thisName = document.getElementById('uname').value;
+    		let filelength = document.getElementById('icon_img').files.length;
+
+    		if (thisName == "") {
+    			alert("Please enter a name");
+    			return;
+    		}
+
+    		let filter_arr = [",",".",";","'","[","]","-","=","!","@","#","$","%","^","&","*","(",")","{","}","|",":","<",">","?","。","，","）","（","：","，"," ","、"," ","\n","\t","\r","\"","\'"]; 
+
+		    for (var i = 0; i < thisName.length; i++) {
+				if ( filter_arr.includes(thisName[i]) ) {
+					alert("Invail user name");
+					return;
+					break;
+				}
+		    }
+
+		    if (filelength == 0 ) {
+		    	alert("upload a icon");
+		    	return;
+		    }
+		    lgoin_request ();
+    	}
+
+    	function logout () {
+    		status = 0;
+    		uname = "";
+    	}
+
+    	function lgoin_request () {
+    		var formElement = document.querySelector("form");
+    		var request = new XMLHttpRequest();
+    		request.open("POST", "login.php");
+    		request.send(new FormData(formElement));
+
+    		request.onreadystatechange = function() {
+    		    if (this.readyState == 4 && this.status == 200) {
+    		        
+    		        let obj = JSON.parse(this.responseText);
+    		        if (obj.status) {
+    		        	uname = obj.username;
+    		        	status = 1;
+    		        }
+    		    }
+    		};
+    	}
+
+        function send_msg () {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+
+            let url = send_msg_path;
+            let msg_text = document.getElementById('send_msg_string').value;
+
+            let params = "username=" + uname + "&color=" + msg_color + "&msg=" + msg_text;
+            xmlhttp.open("GET", url + "?" + params , true);
+            xmlhttp.send();
+        }
+
+        function show_online_user () {
+            var myWindow =  window.open("./online_user.html", "MsgWindow", "width=300,height=500");
+        }
+
+        function setColor(c) {
+            document.getElementById('uname_label').style.color = "#"+c;
+            document.getElementById('send_msg_string').style.color = "#"+c;
+            msg_color = c;
+        }
+
+    </script>
+
+  </body>
+</html>

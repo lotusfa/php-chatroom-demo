@@ -1,0 +1,55 @@
+<style type="text/css">
+	table tr td img{
+		height: 64px;
+		width: 64px;
+	}
+</style>
+<table id="table">
+	<tr>
+		<td> <img src="./uploads/A.ico"></td>
+		<td> A</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	let update_path = "./update.php";
+
+	update_user ();
+
+	setInterval(function(){
+    	update_user ();
+    }, 2000);
+
+	function update_user () {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        let data = JSON.parse(this.responseText);
+		        let online_users = data.online_users;
+		        document.getElementById("table").innerHTML = "";
+
+		        if (online_users.length > 0 ) {
+		        	for (var i = 0; i < online_users.length; i++) {
+		        		let userNode = document.createElement("tr");
+		        		let nameNode = document.createElement("td");
+		        		let iconNode = document.createElement("td");
+
+		        		let imgPath = "./uploads/" + online_users[i].icon;
+		        		nameNode.innerHTML = online_users[i].username+":";
+		        		iconNode.innerHTML = "<img src='"+imgPath+"' >";
+		        		
+		        		userNode.appendChild(iconNode);
+		        		userNode.appendChild(nameNode);
+
+		        		document.getElementById("table").appendChild(userNode);
+		        	}
+		        }
+		    }
+		};
+
+		let url = update_path;
+		let params = "username=" + "";
+		xmlhttp.open("GET", url + "?" + params , true);
+		xmlhttp.send();
+	}
+</script>
