@@ -1,6 +1,7 @@
-The project is build by HO TIN LONG 20356560.
 The environment: Mac OS + XAMPP server + Chrome.
 Before running the project, please check the permissions of (chat_msg.json, chat_user.json and uploads) allow read and write.
+
+please see the live demo from https://phpchatroomdemo.herokuapp.com/
 
 Here is the structure of this project.
 
@@ -17,3 +18,4 @@ update.php			-----	1. get latest msg. 2. update last_login of user. 3. get onlin
 login.php			-----	to push new user data to chat_user.json
 send_msg.php		-----	to push new msg data to chat_msg.json
 
+The project is build by lotusfa.
