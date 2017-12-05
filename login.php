@@ -70,4 +70,5 @@ $jsonMsg = array(
 
 $newJson = json_encode($jsonMsg );
 echo $newJson;
+
 ?>

@@ -24,22 +24,26 @@
     		padding: 10px;
     		margin: 5px;
     	}
+
     	#chat_box {
     		border-collapse: separate;
     	}
+
     	#chat_box .chat{
-    		/*border: 1px solid gray;*/
     		margin: 5px;
     		width: 100%;
     		height: 10px;
     		padding: 5px;
     	}
+
     	#chat_box .chat .name {
     		width: 100px;
     	}
+
     	#chat_box .chat .msg a{
             text-decoration: underline;
     	}
+
         #color_box {
             width: 20px;
             height: 20px;
@@ -52,6 +56,7 @@
 
     <!-- Begin page content -->
     <div class="container">
+
     	<div class="mt-1">
 		    <h1>Chat Room</h1>
 		    <h4><a href="https://github.com/lotusho/phpchatroomdemo">GitHub</a></h4>
@@ -88,11 +93,9 @@
 
 	    <div id="chat_room">
 	    	<h5>Chat Room <button type="button" class="btn btn-danger float-xs-right" onclick="logout();">Logout</button></h5>
-
 		    <hr>
 		    <div id="chats">
-		    	<table id="chat_box">
-		    	</table>
+		    	<table id="chat_box"></table>
 		    </div>
 		    <div class="form-group row">
 				<div class="col-sm-10">
@@ -104,7 +107,6 @@
 				<div class="col-sm-2" >
 					<button type="submit" class="btn btn-primary" style="width: 95%;margin: 0 10px;" onclick="send_msg();">send</button>
 				</div>
-				
 		    </div>
 
             <table>
@@ -126,16 +128,15 @@
                 </tr>
             </table>
 
-
-
-
 		    <br>
+
 		    <button type="submit" class="btn btn-primary" style="width: 95%;margin: 0 10px;" onclick="show_online_user ()">Show Current User</button>
 	    </div>
 	    
-
     </div>
-    	<br>
+
+    <br>
+    
     <footer class="footer" >
       <div class="container">
         <span class="text-muted">Power By: LOTUS FA, <a href="https://lotusfa.com/">lotusfa.com</a></span>
@@ -148,10 +149,8 @@
     	let login_path = "./login.php";
     	let update_path = "./update.php";
     	let send_msg_path = "./send_msg.php";
-
     	let chats_arr = [];
     	let uname = "";
-
         let msg_color = "000000";
     	let status = 0;
     	let update_duration = 1000;
